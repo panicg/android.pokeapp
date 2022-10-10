@@ -1,0 +1,70 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    namespace 'com.panic.studyandroidpoketapi'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.panic.studyandroidpoketapi"
+        minSdk 26
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    dataBinding{
+        enabled = true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    //lifecycle
+    def lifecycle_version = "1.1.1"
+    implementation "android.arch.lifecycle:viewmodel:$lifecycle_version" //viewModel
+    implementation "android.arch.lifecycle:livedata:$lifecycle_version" //liveData
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"//viewmodelScope
+
+    //coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9" //coroutine
+
+    //dagger & hilt
+    def dagger_version = "2.42"
+    def hilt_version = "2.38.1"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+    //activity, fragment
+    implementation "androidx.activity:activity-ktx:1.6.0"
+    implementation "androidx.fragment:fragment-ktx:1.5.3"
+}
